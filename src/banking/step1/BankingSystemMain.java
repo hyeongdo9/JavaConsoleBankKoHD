@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class BankingSystemMain {
 	//github연동
+	//연동 완료후 커밋&푸시
 	public static void main(String[] args) {
 		
 		AccountManager manager = new AccountManager();
