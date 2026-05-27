@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BankingSystemMain {
-
+	//github연동
 	public static void main(String[] args) {
 		
 		AccountManager manager = new AccountManager();
