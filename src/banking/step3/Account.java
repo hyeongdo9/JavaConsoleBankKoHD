@@ -1,6 +1,7 @@
-package banking.step1;
+package banking.step3;
 
-public class Account {
+//추상클래스 : 직접 객체 생성 불가능
+public abstract class Account {
 	//멤버변수
 	private String accId; //계좌번호
 	private String name; //이름

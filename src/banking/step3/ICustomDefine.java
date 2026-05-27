@@ -1,4 +1,4 @@
-package banking.step1;
+package banking.step3;
 
 public interface ICustomDefine {
 	//메뉴 선택을 위한 상수

@@ -1,9 +1,11 @@
-package banking.step1;
+package banking.step2;
 
 import java.util.Scanner;
 
 public class AccountManager implements ICustomDefine {
 	
+
+
 	//계좌 객체를 저장할 배열 (50개)
 	private Account[] accounts = new Account[50];
 	
@@ -29,22 +31,45 @@ public class AccountManager implements ICustomDefine {
 	public void makeAccount() {
 			
 		System.out.println("====계좌개설====");
+		
+		System.out.println("1. 보통예금계좌");
+		System.out.println("2. 신용신뢰계좌");
+		System.out.println("선택: ");
+		int choice = scan.nextInt();
+		
 		System.out.print("계좌번호 : ");
 		String accId = scan.next();
 		System.out.print("고객이름 : ");
 		String name = scan.next();
 		System.out.print("잔고 : ");
 		int balance = scan.nextInt();
+		System.out.println("기본이자%(정수형태로입력) : ");
+		int interestRate = scan.nextInt();
 		
 		//배열크기 초과 체크
 		if (accountCount >= 50) {
 			System.out.println("더이상 계좌를 생성할 수 없습니다. (최대 50개)");
 			return;
 		}
-		//객체생성 후 배열에 저장 및 카운트 증가	
-		accounts[accountCount++] = new Account(accId,  name, balance);
-		System.out.println("계좌개설이 완료되었습니다.");
+	
+		if (choice == 1) {
+			
+			accounts[accountCount++]= new NormalAccount(accId, name, balance, interestRate);
+			System.out.println("계좌계설이 완료되었습니다."); 
+		}
+		
+		else if (choice == 2) {
+			
+			//신용등급을 입력받기 위한 코드
+			System.out.println("신용등급(A,B,C) : ");
+			//자유롭게 받고 저장과 출력은 대문자로 통일
+			String grade = scan.next().toUpperCase();
+			
+			accounts[accountCount++]= new HighCreditAccount(accId, name, balance, interestRate, grade);
+			System.out.println("계좌계설이 완료되었습니다."); 
+		}
 	} 
+	
 	//입금
 	public void depositMoney() {
 		
@@ -79,7 +104,6 @@ public class AccountManager implements ICustomDefine {
 					System.out.println("출금이 완료되었습니다.");
 				}
 			}
-			System.out.println("일치하는 계좌번호가 존재하지 않습니다.");
 		}
 		//전체계좌정보출력
 		public void showAccInfo() {
@@ -90,6 +114,7 @@ public class AccountManager implements ICustomDefine {
 			}
 			for (int i = 0; i < accountCount; i++) {
 				accounts[i].showAccInfo();
+				System.out.println("===========================");
 			}
 		}
 	}

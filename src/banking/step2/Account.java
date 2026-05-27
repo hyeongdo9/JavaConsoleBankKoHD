@@ -1,4 +1,4 @@
-package banking.step1;
+package banking.step2;
 
 public class Account {
 	//멤버변수
