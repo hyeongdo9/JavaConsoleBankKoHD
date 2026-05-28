@@ -6,9 +6,12 @@ public class AccountManager {
 	
 	Scanner scan = new Scanner(System.in);
 	
+	//계좌정보 저장을 위한 배열 
+	Account[] accountArr = new Account[50];	
+	//카운트를 위한 변수 생성
+	int accCount = 0;
 	
-	public  void showMenu() {
-		
+	public  void showMenu() {		
 		System.out.println("=====menu=====");
 		System.out.println("1.계좌개설");
 		System.out.println("2.입금");
@@ -24,6 +27,11 @@ public class AccountManager {
 		String name = scan.next();
 		System.out.println("3.잔고");
 		int balance = scan.nextInt();
+		
+		//입력받은 정보를 통해 Account 타입의 인스턴스 생성 
+		Account account = new Account(accId, name, balance);
+		accountArr[accCount++] = account;		
+		
 		System.out.println("계좌개설완료");
 	}
 	public void depositMoney() {

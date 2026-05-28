@@ -2,8 +2,7 @@ package banking.step2;
 
 import java.util.Scanner;
 
-public class AccountManager implements ICustomDefine {
-	
+public class AccountManager {
 
 
 	//계좌 객체를 저장할 배열 (50개)

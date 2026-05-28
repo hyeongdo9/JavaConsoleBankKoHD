@@ -14,7 +14,9 @@ public class NormalAccount extends Account {
 	}
 	@Override
 	public void deposit(int money) {
-		balance += (balance * interestRate / 100) + money;
+		//balance += (balance * interestRate / 100) + money;
+		int depositMoney = super.getBalance() + (super.getBalance() * interestRate / 100) + money;
+		super.setBalance(depositMoney);
 	}
 	@Override
 	public void showAccInfo() {

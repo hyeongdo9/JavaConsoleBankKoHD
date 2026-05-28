@@ -2,7 +2,7 @@ package banking.step2;
 
 import java.util.Scanner;
 
-public class BankingSystemMain implements ICustomDefine {
+public class BankingSystemMain {
 	
 	public static void main(String[] args) {
 		
@@ -18,23 +18,23 @@ public class BankingSystemMain implements ICustomDefine {
 			
 			switch (choice) {
 			
-			case Make:
+			case ICustomDefine.Make:
 				manager.makeAccount();
 				break;
 			
-			case Deposit:
+			case ICustomDefine.Deposit:
 				manager.depositMoney();
 				break;
 			
-			case Withdraw:
+			case ICustomDefine.Withdraw:
 				manager.withdrawMoney();
 				break;
 			
-			case Inquire:
+			case ICustomDefine.Inquire:
 				manager.showAccInfo();
 				break;
 			
-			case Exit:
+			case ICustomDefine.Exit:
 				System.out.println("프로그램을 종료");
 				scan.close();
 				return;
