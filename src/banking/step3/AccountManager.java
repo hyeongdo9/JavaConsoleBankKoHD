@@ -51,13 +51,14 @@ public class AccountManager implements ICustomDefine {
 			System.out.println("더이상 계좌를 생성할 수 없습니다. (최대 50개)");
 			return;
 		}
-	
+		//1번을 선택했을때
 		if (choice == 1) {
 			
+			//신용계좌 객체를 생성해서 배열에 저장하고 계좌 개수를 증가시키는 코드
 			accounts[accountCount++]= new NormalAccount(accId, name, balance, interestRate);
 			System.out.println("계좌계설이 완료되었습니다."); 
 		}
-		
+		//2번을 선택했을때
 		else if (choice == 2) {
 			
 			//신용등급을 입력받기 위한 코드
@@ -80,9 +81,19 @@ public class AccountManager implements ICustomDefine {
 		int money = scan.nextInt();
 		
 		for (int i = 0; i < accountCount; i++) {
+			//배열에 저장된 계좌번호와 사용자가 입력한 계좌번호가 같은지 비교
 			if (accounts[i].getAccId().equals(accId)) {
 				accounts[i].deposit(money);
 				System.out.println("입금이 완료되었습니다.");
+				return;
+			}
+			if (money < 0) {
+				System.out.println("음수는 입금할 수 없습니다.");
+				return;
+			}
+			//money % 500 != 0 => 500으로 나누어 떨어지지 않음
+			if (money % 500 != 0) {
+				System.out.println("500원 단위만 입금가능");
 				return;
 			}
 		}
@@ -95,13 +106,25 @@ public class AccountManager implements ICustomDefine {
 			System.out.print("출금액 : ");
 			int money = scan.nextInt();
 			for (int i = 0; i < accountCount; i++) {
+				
 				if (accounts[i].getAccId().equals(accId)) {
+					//현재 계좌의 잔고가 출금하려는 금액보다 작은가?를 검사하는 조건문
 					if (accounts[i].getBalance() < money) {
 						System.out.println("잔액이 부족합니다.");
 						return;
 					}
+				
 					accounts[i].withdraw(money);
 					System.out.println("출금이 완료되었습니다.");
+				}
+				if (money < 0) {
+					System.out.println("음수는 입금할 수 없습니다.");
+					return;
+				}
+				//money % 1000 != 0 => 1000으로 나누어 떨어지지 않음
+				if (money % 1000 != 0) {
+					System.out.println("1000원 단위만 출금가능");
+					return;
 				}
 			}
 		}

@@ -13,6 +13,7 @@ public class AccountManager implements ICustomDefine {
 	//scanner 선언
 	private Scanner scan = new Scanner(System.in);
 	
+	
 	//메뉴 출력
 	public void showMenu() {
 			

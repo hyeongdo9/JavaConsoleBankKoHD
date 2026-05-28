@@ -24,7 +24,7 @@ public class Account {
 	public int getBalance() {
 		return balance;
 	}
-	//입금 메서드
+	//입금 메서드(정수형 변수 money를 받겠다.)
 	public void deposit(int money) {
 		this.balance += money;
 	}
