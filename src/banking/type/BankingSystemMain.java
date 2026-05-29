@@ -1,6 +1,7 @@
 package banking.type;
 	//1.학원에서 pull없이 작업함
 	//2.github clone 작업성공
+	//3.커밋/푸시/클론 성공
 import java.util.Scanner;
 
 /*
