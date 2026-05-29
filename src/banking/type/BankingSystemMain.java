@@ -1,5 +1,5 @@
 package banking.type;
-
+	//학원에서 pull없이 작업함
 import java.util.Scanner;
 
 /*
