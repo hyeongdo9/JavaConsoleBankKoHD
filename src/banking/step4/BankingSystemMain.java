@@ -1,4 +1,4 @@
-package banking.step3;
+package banking.step4;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -18,38 +18,54 @@ public class BankingSystemMain implements ICustomDefine {
 			//try-catch로 예외 코드 감싸기
 			try {
 				choice = scan.nextInt();
-			
-			if (choice < Make || choice > Exit) {
+				/*
+				메뉴가 6번까지 늘어났으므로 허용범위를 1~6으로 변경했다.
+				사용자가 메뉴에 없는 번호를 입력했을때, 시스템을 강제로 멈추지 않고 예외
+				(에러)를 직접 발생시켜 올바른 입력을 유도하겠다라는 의미
+				throw new MenuSelectException(); => 조건이 맞으면 개발자가 직접
+				만든 사용자 정의 에러인 MenuSelectException을 수동으로 발생(throw)시킨다.
+				 */
+				if (choice < Make || choice > Exit) {
 					//강제로 예외 발생
-					throw new MenuSelectException();
+					throw new MenuSelectException("에러 : 지정된 메뉴(1~6)의 숫자만 입력할 수 있습니다.");
 				}
-			/*
-			💡 [개념 정리]
-		      ICustomDefine 인터페이스를 implements(구현)했기 때문에, 
-		      그 안에 선언된 Make, Deposit, Exit 등의 상수들을 
-		      앞에 'ICustomDefine.' 이라는 접두사 없이 마치 내 클래스의 멤버처럼 
-		      이름만 가지고 자유롭게 사용할 수 있다!
-			 */
+				/*
+				💡 [개념 정리]
+			      ICustomDefine 인터페이스를 implements(구현)했기 때문에, 
+			      그 안에 선언된 Make, Deposit, Exit 등의 상수들을 
+			      앞에 'ICustomDefine.' 이라는 접두사 없이 마치 내 클래스의 멤버처럼 
+			      이름만 가지고 자유롭게 사용할 수 있다!
+				 */
 			switch (choice) {
-			//계좌개설
+			//1. 계좌개설
 			case Make:
 				manager.makeAccount();
 				break;
-			//입금
+				
+			//2. 입금
 			case Deposit:
 				manager.depositMoney();
 				break;
-			//출금
+				
+			//3. 출금
 			case Withdraw:
 				manager.withdrawMoney();
 				break;
-			//전체계좌조회
+				
+			//4. 전체계좌조회
 			case Inquire:
 				manager.showAccInfo();
 				break;
-			//프로그램 종료	
+				
+			//5. 계좌정보삭제	
+			case Delete:
+				manager.deleteAccount();
+				break;
+				
+			//6. 프로그램 종료	
 			case Exit:
 				System.out.println("프로그램 종료");
+				scan.close();
 				return;
 			}
 		} 
@@ -65,6 +81,6 @@ public class BankingSystemMain implements ICustomDefine {
 				System.out.println(e.getMessage());
 				System.out.println();
 			}
-		}
-	}
+		} // while문 끝 
+	} //main 끝
 }

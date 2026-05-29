@@ -103,10 +103,14 @@ public class AccountManager  {
 		/*
 		if문 기본구조 3가지
 		단일 if문 : 조건이 참(true)일때만 실행한다.
-		-if (조건식) { //조건이 참일 때 실행할 코드}
-		if - else 문 : 참일때와 거짓(false)일 때 각각 다른 코드를 실행한다.
-		-if (조건식) { //조건이 참일 때 실행할 코드}
-		-else { //조건이 거짓일때 실행할 코드}
+		=> if (조건식) { //조건이 참일 때 실행할 코드}
+		if else 문 : 참일때와 거짓(false)일 때 각각 다른 코드를 실행한다.
+		=> if (조건식) { //조건이 참일 때 실행할 코드}
+		 	else { //조건이 거짓일때 실행할 코드}
+		if else if else문 : 여러개의 조건을 차례대로 검사합니다.
+		=> if (조건1) { //조건1이 참일 때 실행할 코드}
+			else if (조건2) { //조건1이 거짓이고, 조건2가 참일때 실행 }
+			else { //모든 조건이 거짓일 때 실행}
 		 */
 		//입금 금액이 0보다 작을때 오류를 발생시키고 메서드를 종료하는 예외처리 
 		if (money < 0) {
@@ -163,29 +167,48 @@ public class AccountManager  {
 				System.out.println("에러 : 1000원 단위만 출금가능");
 				return;
 			}
-			
+			/*
+			int i = 0; => 반복에 사용할 변수 i를 0으로 초기화
+			i < accountCount => i가 accountCount보다 작을때까지만 루프를 실행한다.
+			i++ => 반복문이 한번 실행될때마다 i의 값을 1씩 증가시킨다.
+			 */
 			for (int i = 0; i < accountCount; i++) {
+				/*
+				accounts 배열을 반복문(for 등)으로 돌면서, i번째 객체의
+				계정ID(getAccId())와 찾고자하는 accId가 일치하는지
+				확인하는 조건문이다.
+				 */
 				if (accounts[i].getAccId().equals(accId)) {
 				
 					//현재 계좌의 잔고가 출금하려는 금액보다 작은가?를 검사하는 조건문
 					if (accounts[i].getBalance() < money) {
-						System.out.println("잔액이 부족합니다. 금액전체를 출금할까요?");
-						System.out.println("YES 또는 NO 입력 : ");
+						System.out.println("잔고가 부족합니다. 금액전체를 출금할까요?");
+						System.out.print("YES 또는 NO 입력 : ");
 						String answer = scan.next();
-						//equalsIgnoreCase : 사용자가 소문자 yes를 
-						//치든 대문자 YES를 치든 똑같이 통과시켜준다.
+						/*
+						equalsIgnoreCase : 사용자가 소문자 yes를 
+						치든 대문자 YES를 치든 똑같이 통과시켜준다.
+						 */
 						if (answer.equalsIgnoreCase("YES")) {
 							int allMoney = accounts[i].getBalance();
-							
-							
+							/*
+							accounts라는 계좌배열에서 i번째 위치에 있는 특정 계좌 객체에서
+							특정 금액을 출금하겠다.
+							 */
+							accounts[i].withdraw(allMoney);
+							System.out.println("계좌의 전액인 " + allMoney + "원이 전액 출금되었습니다.");
+						} 
+						else {
+							System.out.println("출금 요청이 취소되었습니다.");
 						}
+						return;
 					}
-				
 					accounts[i].withdraw(money);
 					System.out.println("출금이 완료되었습니다.");
+					return;
 				}
-				
 			}
+			System.out.println("일치하는 계좌번호가 존재하지 않습니다.");
 		}
 		//전체계좌정보출력
 		public void showAccInfo() {
