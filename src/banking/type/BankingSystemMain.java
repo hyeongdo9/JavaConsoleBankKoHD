@@ -1,5 +1,5 @@
 package banking.type;
-
+	//github clone 작업성공
 import java.util.Scanner;
 
 /*
