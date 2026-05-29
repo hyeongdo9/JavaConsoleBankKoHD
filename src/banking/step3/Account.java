@@ -5,7 +5,7 @@ public abstract class Account {
 	//멤버변수
 	private String accId; //계좌번호
 	private String name; //이름
-	protected int balance; //잔고
+	private int balance; //잔고
 	
 	//생성자
 	public Account(String accId, String name, int balance) {
@@ -24,6 +24,9 @@ public abstract class Account {
 	
 	public int getBalance() {
 		return balance;
+	}
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 	//입금 메서드
 	public void deposit(int money) {

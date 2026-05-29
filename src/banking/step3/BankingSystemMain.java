@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //메인클래스가 해당 인터페이스를 사용한다는것
-public class BankingSystemMain implements ICustomDefine {
+public class BankingSystemMain  {
 	
 	public static void main(String[] args) {
 		
@@ -24,23 +24,23 @@ public class BankingSystemMain implements ICustomDefine {
 				}
 			switch (choice) {
 			//계좌개설
-			case Make:
+			case ICustomDefine.Make:
 				manager.makeAccount();
 				break;
 			//입금
-			case Deposit:
+			case ICustomDefine.Deposit:
 				manager.depositMoney();
 				break;
 			//출금
-			case Withdraw:
+			case ICustomDefine.Withdraw:
 				manager.withdrawMoney();
 				break;
 			//전체계좌조회
-			case Inquire:
+			case ICustomDefine.Inquire:
 				manager.showAccInfo();
 				break;
 			//프로그램 종료	
-			case Exit:
+			case ICustomDefine.Exit:
 				System.out.println("프로그램 종료");
 				return;
 			}

@@ -15,6 +15,7 @@ public class HighCreditAccount extends NormalAccount  {
 	public void deposit(int money) {
 		//추가이자 0% 부터
 		int extraRate = 0;		
+		
 		if (grade.equals("A")) {
 			extraRate = ICustomDefine.interestRate_A;
 		}

@@ -23,5 +23,10 @@ public class Account {
 		this.balance -= money;
 	}
 	//계좌정보출력
-	
+	public void showAccInfo() {
+		System.out.println("계좌번호 : "+ accId);
+		System.out.println("고객이름 : "+ name);
+		System.out.println("잔고 : "+ balance);
+		System.out.println("=================");
+	}
 }
